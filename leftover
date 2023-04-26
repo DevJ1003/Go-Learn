@@ -13,3 +13,9 @@ concurrency_race_condition
 concurrency_mutex
 
 concurrency_atomic
+
+channels_semaphore --> to practice more
+
+channels_receivers --> to practice more
+
+documentation

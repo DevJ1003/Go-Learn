@@ -5,7 +5,7 @@ package main
 
 import "fmt"
 
-ffunc main() {
+func main() {
 	printMsg("Calling a function!")
 
 	showMsg := func(msg string) {
