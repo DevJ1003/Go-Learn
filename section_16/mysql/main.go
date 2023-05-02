@@ -26,9 +26,9 @@ func main() {
 
 	// test1Select()
 	// test2Select()
-	test3Insert()
+	// test3Insert()
 	// test4Update()
-	// test5Delete()
+	test5Delete()
 
 }
 
@@ -78,13 +78,51 @@ func test3Insert() {
 	stmt, err := db.Prepare(sqlStmt)
 	checkErr(err)
 
-	res, err := stmt.Exec(5, "George")
+	res, err := stmt.Exec(6, "George")
 	checkErr(err)
 
-	id, err := res.LastIndexId()
+	id, err := res.LastInsertId()
 	checkErr(err)
 
 	fmt.Println(id)
+
+}
+
+// ====================================================================
+func test4Update() {
+
+	fmt.Println("\n==> test4Update")
+
+	var sqlStmt = fmt.Sprintf("UPDATE %s SET name=? WHERE id=?", dbu.TableName)
+	stmt, err := db.Prepare(sqlStmt)
+	checkErr(err)
+
+	res, err := stmt.Exec("Eric", 5)
+	checkErr(err)
+
+	affect, err := res.RowsAffected()
+	checkErr(err)
+
+	fmt.Println(affect)
+
+}
+
+// ====================================================================
+func test5Delete() {
+
+	fmt.Println("\n==> test5Delete")
+
+	var sqlStmt = fmt.Sprintf("DELETE FROM %s WHERE id=?", dbu.TableName)
+	stmt, err := db.Prepare(sqlStmt)
+	checkErr(err)
+
+	res, err := stmt.Exec(5)
+	checkErr(err)
+
+	affect, err := res.RowsAffected()
+	checkErr(err)
+
+	fmt.Println(affect)
 
 }
 
